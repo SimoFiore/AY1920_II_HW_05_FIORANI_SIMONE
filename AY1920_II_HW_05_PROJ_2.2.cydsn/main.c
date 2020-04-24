@@ -13,6 +13,7 @@
 #include "I2C_Interface.h"
 #include "project.h"
 #include "stdio.h"
+#include "InterruptRoutines.h"
 
 /**
 *   \brief 7-bit I2C address of the slave device.
@@ -37,7 +38,7 @@
 /**
 *   \brief Hex value to set normal mode to the accelerator
 */
-#define LIS3DH_NORMAL_MODE_CTRL_REG1 0x47
+#define LIS3DH_NORMAL_MODE_CTRL_REG1 0x57
 
 /**
 *   \brief  Address of the Temperature Sensor Configuration register
@@ -70,6 +71,8 @@ int main(void)
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
     I2C_Peripheral_Start();
     UART_Debug_Start();
+    Timer_ACC_Start();
+    isr_READ_StartEx(Custom_ISR_READ);
     
     CyDelay(5); //"The boot procedure is complete about 5 milliseconds after device power-up."
     
@@ -266,36 +269,50 @@ int main(void)
         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
     }
     
+    uint8_t StatusReg;
     int16_t OutTemp;
     uint8_t header = 0xA0;
     uint8_t footer = 0xC0;
-    uint8_t OutArray[4]; 
-    uint8_t TemperatureData[2];
+    uint8_t OutArray[8]; 
+    uint8_t TemperatureData[6];
     
     OutArray[0] = header;
-    OutArray[3] = footer;
+    OutArray[7] = footer;
     
     for(;;)
     {
         CyDelay(100);
-//        error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-//                                            LIS3DH_OUT_ADC_3L,
-//                                            &TemperatureData[0]);
-//        
-//        error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-//                                            LIS3DH_OUT_ADC_3H,
-//                                            &TemperatureData[1]);
         
-        error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
-                                                 LIS3DH_OUT_ADC_3L,
-                                                 2,
-                                                 &TemperatureData[0]);
-        if(error == NO_ERROR)
+        if (FlagREAD == 1)
         {
-            OutTemp = (int16)((TemperatureData[0] | (TemperatureData[1]<<8)))>>6;
-            OutArray[1] = (uint8_t)(OutTemp & 0xFF);
-            OutArray[2] = (uint8_t)(OutTemp >> 8);
-            UART_Debug_PutArray(OutArray, 4);
+            error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
+                                                LIS3DH_STATUS_REG,
+                                                &StatusReg);
+            if ( (StatusReg & 8) == 8 )
+            {
+                error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
+                                                         0x28,
+                                                         6,
+                                                         &TemperatureData[0]);
+                if(error == NO_ERROR)
+                {
+                    FlagREAD = 0;
+                    
+                    OutTemp = (int16)((TemperatureData[0] | (TemperatureData[1]<<8)))>>6;
+                    OutTemp *= 4;
+                    OutArray[1] = (uint8_t)(OutTemp & 0xFF);
+                    OutArray[2] = (uint8_t)(OutTemp >> 8);
+                    OutTemp = (int16)((TemperatureData[2] | (TemperatureData[3]<<8)))>>6;
+                    OutTemp *= 4;
+                    OutArray[3] = (uint8_t)(OutTemp & 0xFF);
+                    OutArray[4] = (uint8_t)(OutTemp >> 8);
+                    OutTemp = (int16)((TemperatureData[4] | (TemperatureData[5]<<8)))>>6;
+                    OutTemp *= 4;
+                    OutArray[5] = (uint8_t)(OutTemp & 0xFF);
+                    OutArray[6] = (uint8_t)(OutTemp >> 8);
+                    UART_Debug_PutArray(OutArray, 8);
+                }
+            }
         }
     }
 }
