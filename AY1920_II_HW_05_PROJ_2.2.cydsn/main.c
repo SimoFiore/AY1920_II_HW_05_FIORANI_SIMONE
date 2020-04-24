@@ -64,6 +64,11 @@
 */
 #define LIS3DH_OUT_ADC_3H 0x0D
 
+/**
+*   \brief Address of the Xaxis output LSB register. It will be the first register to be read.
+*/
+#define LIS3DH_X_AXIS_L 0x28
+
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
@@ -274,15 +279,13 @@ int main(void)
     uint8_t header = 0xA0;
     uint8_t footer = 0xC0;
     uint8_t OutArray[8]; 
-    uint8_t TemperatureData[6];
+    uint8_t AccData[6];
     
     OutArray[0] = header;
     OutArray[7] = footer;
     
     for(;;)
     {
-        CyDelay(100);
-        
         if (FlagREAD == 1)
         {
             error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
@@ -291,22 +294,22 @@ int main(void)
             if ( (StatusReg & 8) == 8 )
             {
                 error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS,
-                                                         0x28,
+                                                         LIS3DH_X_AXIS_L,
                                                          6,
-                                                         &TemperatureData[0]);
+                                                         &AccData[0]);
                 if(error == NO_ERROR)
                 {
                     FlagREAD = 0;
                     
-                    OutTemp = (int16)((TemperatureData[0] | (TemperatureData[1]<<8)))>>6;
+                    OutTemp = (int16)((AccData[0] | (AccData[1]<<8)))>>6;
                     OutTemp *= 4;
                     OutArray[1] = (uint8_t)(OutTemp & 0xFF);
                     OutArray[2] = (uint8_t)(OutTemp >> 8);
-                    OutTemp = (int16)((TemperatureData[2] | (TemperatureData[3]<<8)))>>6;
+                    OutTemp = (int16)((AccData[2] | (AccData[3]<<8)))>>6;
                     OutTemp *= 4;
                     OutArray[3] = (uint8_t)(OutTemp & 0xFF);
                     OutArray[4] = (uint8_t)(OutTemp >> 8);
-                    OutTemp = (int16)((TemperatureData[4] | (TemperatureData[5]<<8)))>>6;
+                    OutTemp = (int16)((AccData[4] | (AccData[5]<<8)))>>6;
                     OutTemp *= 4;
                     OutArray[5] = (uint8_t)(OutTemp & 0xFF);
                     OutArray[6] = (uint8_t)(OutTemp >> 8);
