@@ -69,6 +69,17 @@
 */
 #define LIS3DH_X_AXIS_L 0x28
 
+/**
+*   \brief Hex value to set normal mode, 100 Hz to the accelerator in CTRL_REG_1
+*/
+#define LIS3DH_NORMAL_MODE_100HZ_2G_CTRL_REG_1 0x57
+
+/**
+*   \brief Hex value to set the +-2g FSR mode in CTRL_REG_4 (In this case we don't need to modify the previous definition)
+*/
+
+#define LIS3DH_CTRL_REG4_BDU_ACTIVE 0x80
+
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
@@ -156,9 +167,9 @@ int main(void)
         
     UART_Debug_PutString("\r\nWriting new values..\r\n");
     
-    if (ctrl_reg1 != LIS3DH_NORMAL_MODE_CTRL_REG1)
+    if (ctrl_reg1 != LIS3DH_NORMAL_MODE_100HZ_2G_CTRL_REG_1)
     {
-        ctrl_reg1 = LIS3DH_NORMAL_MODE_CTRL_REG1;
+        ctrl_reg1 = LIS3DH_NORMAL_MODE_100HZ_2G_CTRL_REG_1;
     
         error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
                                              LIS3DH_CTRL_REG1,
@@ -193,47 +204,9 @@ int main(void)
         UART_Debug_PutString("Error occurred during I2C comm to read control register 1\r\n");   
     }
     
-     /******************************************/
-     /* I2C Reading Temperature sensor CFG reg */
-     /******************************************/
-
-    uint8_t tmp_cfg_reg;
-
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_TEMP_CFG_REG,
-                                        &tmp_cfg_reg);
-    
-    if (error == NO_ERROR)
-    {
-        sprintf(message, "TEMPERATURE CONFIG REGISTER: 0x%02X\r\n", tmp_cfg_reg);
-        UART_Debug_PutString(message); 
-    }
-    else
-    {
-        UART_Debug_PutString("Error occurred during I2C comm to read temperature config register\r\n");   
-    }
-    
-    
-    tmp_cfg_reg = LIS3DH_TEMP_CFG_REG_ACTIVE; // must be changed to the appropriate value
-    
-    error = I2C_Peripheral_WriteRegister(LIS3DH_DEVICE_ADDRESS,
-                                         LIS3DH_TEMP_CFG_REG,
-                                         tmp_cfg_reg);
-    
-    error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,
-                                        LIS3DH_TEMP_CFG_REG,
-                                        &tmp_cfg_reg);
-    
-    
-    if (error == NO_ERROR)
-    {
-        sprintf(message, "TEMPERATURE CONFIG REGISTER after being updated: 0x%02X\r\n", tmp_cfg_reg);
-        UART_Debug_PutString(message); 
-    }
-    else
-    {
-        UART_Debug_PutString("Error occurred during I2C comm to read temperature config register\r\n");   
-    }
+    /******************************************/
+    /*          Set Control Register 4        */
+    /******************************************/
     
     uint8_t ctrl_reg4;
 
@@ -273,6 +246,10 @@ int main(void)
         UART_Debug_PutString("Error occurred during I2C comm to read control register4\r\n");   
     }
     
+    /******************************************/
+    /*   Reading of the 3 Axis Accelerometer  */
+    /******************************************/
+    
     uint8_t StatusReg;
     int16_t OutTemp;
     uint8_t header = 0xA0;
@@ -283,8 +260,8 @@ int main(void)
     OutArray[0] = header;
     OutArray[7] = footer;
     
-    Timer_ACC_Start();
     isr_READ_StartEx(Custom_ISR_READ);
+    Timer_ACC_Start();
     
     for(;;)
     {
