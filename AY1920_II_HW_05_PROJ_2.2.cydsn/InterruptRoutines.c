@@ -1,25 +1,13 @@
-/* ========================================
- *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
-*/
-
 #include "InterruptRoutines.h"
 #include "project.h"
 
-int FlagREAD = 0;
+int FlagREAD = 0; // Definition of the flag that will be risen from the interrupt
 
 CY_ISR (Custom_ISR_READ)
 {
-    Timer_ACC_ReadStatusRegister();
+    Timer_ACC_ReadStatusRegister(); // Timer reset to generate new interrupt
     
-    FlagREAD = 1;
+    FlagREAD = 1;   // Flag that enable the reading of accelerometer in the main
     
 }
 /* [] END OF FILE */

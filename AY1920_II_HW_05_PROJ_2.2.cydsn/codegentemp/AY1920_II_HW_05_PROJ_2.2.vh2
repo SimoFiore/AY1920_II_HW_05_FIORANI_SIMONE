@@ -2,7 +2,7 @@
 --	Conversion of AY1920_II_HW_05_PROJ_2.2.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Sun Apr 26 15:32:50 2020
+--	Mon Apr 27 12:35:50 2020
 --
 
 USE cypress.cypress.all;

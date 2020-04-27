@@ -1,5 +1,5 @@
 # AY1920_II_HW_05_PROJ_2.3
-# 2020-04-26 13:29:22Z
+# 2020-04-27 10:37:22Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -12,7 +12,7 @@ set_io "Rx_1(0)" iocell 12 6
 set_io "Tx_1(0)" iocell 12 7
 set_io "SDA_1(0)" iocell 12 1
 set_io "SCL_1(0)" iocell 12 0
-set_location "Net_2" 0 0 1 2
+set_location "Net_460" 0 0 1 2
 set_location "\UART_Debug:BUART:counter_load_not\" 1 0 0 1
 set_location "\UART_Debug:BUART:tx_status_0\" 0 0 1 1
 set_location "\UART_Debug:BUART:tx_status_2\" 0 0 1 3

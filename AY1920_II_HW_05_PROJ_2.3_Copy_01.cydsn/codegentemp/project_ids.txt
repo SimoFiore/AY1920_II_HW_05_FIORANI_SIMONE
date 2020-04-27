@@ -1,0 +1,10 @@
+C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.1.cydsn\AY1920_II_HW_05_PROJ_2.1.cyprj|e2ac6f25-a536-466e-81ad-223b44cb7872
+C:\Users\simon\Desktop\ProgettoLTES\AnnotationLibrary\AnnotationLibrary_lib\AnnotationLibrary_lib.cylib\AnnotationLibrary_lib.cyprj|b031ed56-5b39-431a-89e2-474ceb3d35f7
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|cedffe95-9de6-4240-9dbe-6d6f5b63cb35
+C:\Users\simon\Documents\PSoC Creator\4.3\Downloads ( 4.3).cylib\Downloads ( 4.3).cyprj|919b3c0f-3e45-4554-b703-7b76b55d535f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|1f220544-082e-46a5-9a74-a972f857e1bf
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|99979ca8-354d-4c87-bf81-bae21c677120
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|369a19e4-f1ea-4584-a2f6-991603bfa494
+C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\AY1920_II_HW_05_PROJ_2.2.cyprj|a565516c-5179-4e11-803e-6fa459027c63
+C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.3.cydsn\AY1920_II_HW_05_PROJ_2.3.cyprj|136fd471-e897-4e07-be38-22b4003aef66
+C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.3_Copy_01.cydsn\AY1920_II_HW_05_PROJ_2.3_Copy_01.cyprj|db110aa5-0574-4018-bc6f-aa62e189ad17

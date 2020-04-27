@@ -1,5 +1,5 @@
 -- Project:   AY1920_II_HW_05_PROJ_2.3
--- Generated: 04/26/2020 15:29:22
+-- Generated: 04/27/2020 12:37:22
 -- PSoC Creator  4.3
 
 ENTITY \AY1920_II_HW_05_PROJ_2.3\ IS
@@ -31,13 +31,13 @@ ARCHITECTURE __DEFAULT__ OF \AY1920_II_HW_05_PROJ_2.3\ IS
     SIGNAL ClockBlock_PLL_OUT : bit;
     SIGNAL ClockBlock_XTAL : bit;
     SIGNAL ClockBlock_XTAL_32KHZ : bit;
-    SIGNAL Net_2 : bit;
-    ATTRIBUTE placement_force OF Net_2 : SIGNAL IS "U(0,0,B)2";
     SIGNAL Net_386 : bit;
     ATTRIBUTE global_signal OF Net_386 : SIGNAL IS true;
     SIGNAL Net_386_local : bit;
     SIGNAL Net_396 : bit;
-    SIGNAL Net_7 : bit;
+    SIGNAL Net_460 : bit;
+    ATTRIBUTE placement_force OF Net_460 : SIGNAL IS "U(0,0,B)2";
+    SIGNAL Net_461 : bit;
     SIGNAL Rx_1(0)__PA : bit;
     SIGNAL SCL_1(0)__PA : bit;
     SIGNAL SDA_1(0)__PA : bit;
@@ -134,8 +134,8 @@ ARCHITECTURE __DEFAULT__ OF \AY1920_II_HW_05_PROJ_2.3\ IS
     ATTRIBUTE Location OF SDA_1(0) : LABEL IS "P12[1]";
     ATTRIBUTE lib_model OF SCL_1(0) : LABEL IS "iocell4";
     ATTRIBUTE Location OF SCL_1(0) : LABEL IS "P12[0]";
-    ATTRIBUTE lib_model OF Net_2 : LABEL IS "macrocell1";
-    ATTRIBUTE Location OF Net_2 : LABEL IS "U(0,0)";
+    ATTRIBUTE lib_model OF Net_460 : LABEL IS "macrocell1";
+    ATTRIBUTE Location OF Net_460 : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF \UART_Debug:BUART:counter_load_not\ : LABEL IS "macrocell2";
     ATTRIBUTE Location OF \UART_Debug:BUART:counter_load_not\ : LABEL IS "U(1,0)";
     ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_status_0\ : LABEL IS "macrocell3";
@@ -613,7 +613,7 @@ BEGIN
         PORT MAP(
             pa_out => Rx_1(0)__PA,
             oe => open,
-            fb => Net_7,
+            fb => Net_461,
             pad_in => Rx_1(0)_PAD,
             in_clock => ClockBlock_BUS_CLK,
             in_clock_en => '1',
@@ -704,7 +704,7 @@ BEGIN
         PORT MAP(
             pa_out => Tx_1(0)__PA,
             oe => open,
-            pin_input => Net_2,
+            pin_input => Net_460,
             pad_out => Tx_1(0)_PAD,
             pad_in => Tx_1(0)_PAD,
             in_clock => open,
@@ -902,13 +902,13 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
-    Net_2:macrocell
+    Net_460:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0)",
             regmode => 0,
             clken_mode => 1)
         PORT MAP(
-            q => Net_2,
+            q => Net_460,
             main_0 => \UART_Debug:BUART:txn\);
 
     \UART_Debug:BUART:counter_load_not\:macrocell
@@ -965,7 +965,7 @@ BEGIN
         PORT MAP(
             q => \UART_Debug:BUART:rx_postpoll\,
             main_0 => \UART_Debug:BUART:pollcount_1\,
-            main_1 => Net_7,
+            main_1 => Net_461,
             main_2 => \UART_Debug:BUART:pollcount_0\);
 
     \UART_Debug:BUART:rx_status_4\:macrocell
@@ -1315,7 +1315,7 @@ BEGIN
             main_6 => \UART_Debug:BUART:rx_count_5\,
             main_7 => \UART_Debug:BUART:rx_count_4\,
             main_8 => \UART_Debug:BUART:pollcount_1\,
-            main_9 => Net_7,
+            main_9 => Net_461,
             main_10 => \UART_Debug:BUART:pollcount_0\);
 
     \UART_Debug:BUART:rx_load_fifo\:macrocell
@@ -1371,7 +1371,7 @@ BEGIN
             main_5 => \UART_Debug:BUART:rx_count_6\,
             main_6 => \UART_Debug:BUART:rx_count_5\,
             main_7 => \UART_Debug:BUART:rx_count_4\,
-            main_8 => Net_7,
+            main_8 => Net_461,
             main_9 => \UART_Debug:BUART:rx_last\);
 
     \UART_Debug:BUART:rx_bitclk_enable\:macrocell
@@ -1413,7 +1413,7 @@ BEGIN
             main_0 => \UART_Debug:BUART:rx_count_2\,
             main_1 => \UART_Debug:BUART:rx_count_1\,
             main_2 => \UART_Debug:BUART:pollcount_1\,
-            main_3 => Net_7,
+            main_3 => Net_461,
             main_4 => \UART_Debug:BUART:pollcount_0\);
 
     \UART_Debug:BUART:pollcount_0\:macrocell
@@ -1427,7 +1427,7 @@ BEGIN
             clock_0 => \UART_Debug:Net_9\,
             main_0 => \UART_Debug:BUART:rx_count_2\,
             main_1 => \UART_Debug:BUART:rx_count_1\,
-            main_2 => Net_7,
+            main_2 => Net_461,
             main_3 => \UART_Debug:BUART:pollcount_0\);
 
     \UART_Debug:BUART:rx_status_3\:macrocell
@@ -1445,7 +1445,7 @@ BEGIN
             main_3 => \UART_Debug:BUART:rx_state_3\,
             main_4 => \UART_Debug:BUART:rx_state_2\,
             main_5 => \UART_Debug:BUART:pollcount_1\,
-            main_6 => Net_7,
+            main_6 => Net_461,
             main_7 => \UART_Debug:BUART:pollcount_0\);
 
     \UART_Debug:BUART:rx_last\:macrocell
@@ -1457,6 +1457,6 @@ BEGIN
         PORT MAP(
             q => \UART_Debug:BUART:rx_last\,
             clock_0 => \UART_Debug:Net_9\,
-            main_0 => Net_7);
+            main_0 => Net_461);
 
 END __DEFAULT__;

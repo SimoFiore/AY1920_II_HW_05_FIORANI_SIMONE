@@ -1,6 +1,6 @@
 // ======================================================================
 // AY1920_II_HW_05_PROJ_2.2.v generated from TopDesign.cysch
-// 04/26/2020 at 15:32
+// 04/27/2020 at 12:35
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -528,6 +528,7 @@ module top ;
           wire  Net_391;
           wire  Net_390;
           wire  Net_399;
+          wire  Net_386;
     electrical  Net_385;
     electrical  Net_384;
     electrical  Net_383;
@@ -608,7 +609,6 @@ module top ;
           wire  Net_1;
           wire  Net_396;
           wire  Net_388;
-          wire  Net_386;
     electrical  Net_189;
     electrical  Net_191;
     electrical  Net_263;
