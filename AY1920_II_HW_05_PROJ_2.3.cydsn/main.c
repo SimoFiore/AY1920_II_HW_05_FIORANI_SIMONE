@@ -149,6 +149,7 @@ int main(void)
         }
     }
     
+    
     /******************************************/
     /*         Read Control Register 1        */
     /******************************************/
@@ -199,6 +200,7 @@ int main(void)
     /*   Reading of the 3 Axis Accelerometer  */
     /******************************************/
     
+    
     uint8_t StatusReg;      // Reading of the StatusReg to check if new data is available
     int16_t OutTemp;        // Variable containing the actual, int16, data of the i-Axis accelerometer that will be sent to UART
     uint8_t header = 0xA0;  // Header of the UART string
@@ -217,19 +219,19 @@ int main(void)
     OutArray[0] = header;   // First byte of the string is the header
     OutArray[13] = footer;   // Last byte of the string is the footer
     
-    isr_READ_StartEx(Custom_ISR_READ);  // Starting the ISR that rise the flag enabling the accelerometer reading
-    Timer_ACC_Start();                  // Timer that generates the ISR at 100 Hz, in order to have a constant reading rate
+//    isr_READ_StartEx(Custom_ISR_READ);  // Starting the ISR that rise the flag enabling the accelerometer reading
+//    Timer_ACC_Start();                  // Timer that generates the ISR at 100 Hz, in order to have a constant reading rate
      
     for(;;)
     {
-        if (FlagREAD == 1) // If the timer has generated the interrupt
-        {
+//        if (FlagREAD == 1) // If the timer has generated the interrupt
+//        {
             error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,  // Read the content of the status reg. We want to control
                                                 LIS3DH_STATUS_REG,      // the bit ZYXDA (bit 3), that it's 1 when a new set of data is
                                                 &StatusReg);            // available. BDU active ensure that the data of the register
                                                                         // won't be updated until the reading is done
                                                                         
-            if ( (StatusReg & 8) == 8 ) // If bit ZYXDA is high (new data available)
+            if ( (StatusReg & 0x08) == 0x08 ) // If bit ZYXDA is high (new data available)
             {
                 error = I2C_Peripheral_ReadRegisterMulti(LIS3DH_DEVICE_ADDRESS, // Read the content of the registers of the accelerometer.
                                                          LIS3DH_X_AXIS_L,       // Starting the reading from the first register (LSB of X axis)
@@ -277,7 +279,7 @@ int main(void)
                     
                     UART_Debug_PutArray(OutArray, 14);// Sending of the complete string through UART
                     
-                    FlagREAD = 0; // Setting again the flag to zero, waiting a new interrupt from timer
+//                    FlagREAD = 0; // Setting again the flag to zero, waiting a new interrupt from timer
                     
                     
 
@@ -285,6 +287,6 @@ int main(void)
             }
         }
     }
-}
+//}
 
 /* [] END OF FILE */

@@ -2,7 +2,7 @@
 --	Conversion of AY1920_II_HW_05_PROJ_2.3.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Apr 27 12:37:20 2020
+--	Tue Apr 28 16:28:50 2020
 --
 
 USE cypress.cypress.all;
@@ -455,16 +455,6 @@ TERMINAL Net_426 : bit;
 TERMINAL Net_447 : bit;
 TERMINAL Net_449_1 : bit;
 TERMINAL Net_449_0 : bit;
-SIGNAL Net_386 : bit;
-SIGNAL Net_388 : bit;
-SIGNAL \Timer_ACC:Net_260\ : bit;
-SIGNAL \Timer_ACC:Net_266\ : bit;
-SIGNAL \Timer_ACC:Net_51\ : bit;
-SIGNAL \Timer_ACC:Net_261\ : bit;
-SIGNAL \Timer_ACC:Net_57\ : bit;
-SIGNAL Net_396 : bit;
-SIGNAL Net_477 : bit;
-SIGNAL \Timer_ACC:Net_102\ : bit;
 SIGNAL \UART_Debug:BUART:reset_reg\\D\ : bit;
 SIGNAL \UART_Debug:BUART:txn\\D\ : bit;
 SIGNAL \UART_Debug:BUART:tx_state_1\\D\ : bit;
@@ -1245,30 +1235,6 @@ KIT_059_1:cy_annotation_universal_v1_0
 			Net_452, Net_453, Net_454, Net_425,
 			Net_448, Net_423, Net_424, Net_426,
 			Net_447, Net_449_1, Net_449_0));
-timer_clock:cy_clock_v1_0
-	GENERIC MAP(cy_registers=>"",
-		id=>"c0fb34bd-1044-4931-9788-16b01ce89812",
-		source_clock_id=>"",
-		divisor=>0,
-		period=>"100000000000",
-		is_direct=>'0',
-		is_digital=>'1')
-	PORT MAP(clock_out=>Net_386,
-		dig_domain_out=>open);
-\Timer_ACC:TimerHW\:cy_psoc3_timer_v1_0
-	GENERIC MAP(cy_registers=>"")
-	PORT MAP(clock=>Net_386,
-		kill=>zero,
-		enable=>one,
-		capture=>zero,
-		timer_reset=>zero,
-		tc=>\Timer_ACC:Net_51\,
-		compare=>\Timer_ACC:Net_261\,
-		interrupt=>Net_396);
-isr_READ:cy_isr_v1_0
-	GENERIC MAP(int_type=>"10",
-		is_nmi=>'0')
-	PORT MAP(int_signal=>Net_396);
 \UART_Debug:BUART:reset_reg\:cy_dff
 	PORT MAP(d=>zero,
 		clk=>\UART_Debug:BUART:clock_op\,

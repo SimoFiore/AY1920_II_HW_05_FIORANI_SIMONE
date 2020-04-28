@@ -37,13 +37,6 @@
   <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\I2C_Master_SLAVE.c" value="SOURCE_C;CortexM3;;;;I2C_Master" />
   <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\I2C_Master_MASTER.c" value="SOURCE_C;CortexM3;;;;I2C_Master" />
   <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\I2C_Master_PVT.h" value="HEADER;;;;;I2C_Master" />
-  <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\timer_clock.c" value="SOURCE_C;CortexM3;;;;timer_clock" />
-  <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\timer_clock.h" value="HEADER;;;;;timer_clock" />
-  <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\Timer_ACC.c" value="SOURCE_C;CortexM3;;;;Timer_ACC" />
-  <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\Timer_ACC.h" value="HEADER;;;;;Timer_ACC" />
-  <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\Timer_ACC_PM.c" value="SOURCE_C;CortexM3;;;;Timer_ACC" />
-  <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\isr_READ.c" value="SOURCE_C;CortexM3;;;;isr_READ" />
-  <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\isr_READ.h" value="HEADER;;;;;isr_READ" />
   <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\UART_Debug_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_Debug_IntClock" />
   <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\UART_Debug_IntClock.h" value="HEADER;;;;;UART_Debug_IntClock" />
   <file name="C:\Users\simon\Desktop\ProgettoLTES\ASSIGNMENT_05\PSoC_03\AY1920_II_HW_05_PROJ_2.2.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />

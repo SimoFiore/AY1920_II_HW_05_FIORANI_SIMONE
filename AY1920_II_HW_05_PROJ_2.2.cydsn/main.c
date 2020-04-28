@@ -209,13 +209,13 @@ int main(void)
     OutArray[0] = header;   // First byte of the string is the header
     OutArray[7] = footer;   // Last byte of the string is the footer
     
-    isr_READ_StartEx(Custom_ISR_READ);  // Starting the ISR that rise the flag enabling the accelerometer reading
-    Timer_ACC_Start();                  // Timer that generates the ISR at 100 Hz, in order to have a constant reading rate
+//    isr_READ_StartEx(Custom_ISR_READ);  // Starting the ISR that rise the flag enabling the accelerometer reading
+//    Timer_ACC_Start();                  // Timer that generates the ISR at 100 Hz, in order to have a constant reading rate
     
     for(;;)
     {
-        if (FlagREAD == 1) // If the timer has generated the interrupt
-        {
+//        if (FlagREAD == 1) // If the timer has generated the interrupt
+//        {
             error = I2C_Peripheral_ReadRegister(LIS3DH_DEVICE_ADDRESS,  // Read the content of the status reg. We want to control
                                                 LIS3DH_STATUS_REG,      // the bit ZYXDA (bit 3), that it's 1 when a new set of data is
                                                 &StatusReg);            // available. BDU active ensure that the data of the register
@@ -255,12 +255,12 @@ int main(void)
                     
                     UART_Debug_PutArray(OutArray, 8); // Sending of the complete string through UART
                     
-                    FlagREAD = 0; // Setting again the flag to zero, waiting a new interrupt from timer
+//                    FlagREAD = 0; // Setting again the flag to zero, waiting a new interrupt from timer
                     
                 }
             }
         }
     }
-}
+//}
 
 /* [] END OF FILE */

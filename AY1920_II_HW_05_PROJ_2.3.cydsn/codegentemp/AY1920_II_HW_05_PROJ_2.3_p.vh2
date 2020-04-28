@@ -1,5 +1,5 @@
 -- Project:   AY1920_II_HW_05_PROJ_2.3
--- Generated: 04/27/2020 12:37:21
+-- Generated: 04/28/2020 16:28:50
 -- PSoC Creator  4.3
 
 ENTITY \AY1920_II_HW_05_PROJ_2.3\ IS
@@ -31,10 +31,6 @@ ARCHITECTURE __DEFAULT__ OF \AY1920_II_HW_05_PROJ_2.3\ IS
     SIGNAL ClockBlock_PLL_OUT : bit;
     SIGNAL ClockBlock_XTAL : bit;
     SIGNAL ClockBlock_XTAL_32KHZ : bit;
-    SIGNAL Net_386 : bit;
-    ATTRIBUTE global_signal OF Net_386 : SIGNAL IS true;
-    SIGNAL Net_386_local : bit;
-    SIGNAL Net_396 : bit;
     SIGNAL Net_460 : bit;
     SIGNAL Net_461 : bit;
     SIGNAL Rx_1(0)__PA : bit;
@@ -46,8 +42,6 @@ ARCHITECTURE __DEFAULT__ OF \AY1920_II_HW_05_PROJ_2.3\ IS
     SIGNAL \I2C_Master:Net_643_0\ : bit;
     SIGNAL \I2C_Master:Net_697\ : bit;
     SIGNAL \I2C_Master:sda_x_wire\ : bit;
-    SIGNAL \Timer_ACC:Net_261\ : bit;
-    SIGNAL \Timer_ACC:Net_51\ : bit;
     SIGNAL \UART_Debug:BUART:counter_load_not\ : bit;
     SIGNAL \UART_Debug:BUART:pollcount_0\ : bit;
     SIGNAL \UART_Debug:BUART:pollcount_1\ : bit;
@@ -99,7 +93,6 @@ ARCHITECTURE __DEFAULT__ OF \AY1920_II_HW_05_PROJ_2.3\ IS
     SIGNAL zero : bit;
     ATTRIBUTE GROUND OF zero : SIGNAL IS true;
     SIGNAL \ClockBlock.clk_bus_glb_ff__sig\ : bit;
-    SIGNAL \ClockBlock.dclk_glb_ff_1__sig\ : bit;
     ATTRIBUTE lib_model OF Rx_1(0) : LABEL IS "iocell1";
     ATTRIBUTE Location OF Rx_1(0) : LABEL IS "P12[6]";
     ATTRIBUTE lib_model OF Tx_1(0) : LABEL IS "iocell2";
@@ -116,28 +109,27 @@ ARCHITECTURE __DEFAULT__ OF \AY1920_II_HW_05_PROJ_2.3\ IS
     ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_postpoll\ : LABEL IS "macrocell6";
     ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_status_4\ : LABEL IS "macrocell7";
     ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_status_5\ : LABEL IS "macrocell8";
-    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell9";
     ATTRIBUTE lib_model OF \UART_Debug:BUART:sTX:TxShifter:u0\ : LABEL IS "datapathcell1";
     ATTRIBUTE lib_model OF \UART_Debug:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "datapathcell2";
     ATTRIBUTE lib_model OF \UART_Debug:BUART:sTX:TxSts\ : LABEL IS "statusicell1";
     ATTRIBUTE lib_model OF \UART_Debug:BUART:sRX:RxShifter:u0\ : LABEL IS "datapathcell3";
     ATTRIBUTE lib_model OF \UART_Debug:BUART:sRX:RxSts\ : LABEL IS "statusicell2";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:txn\ : LABEL IS "macrocell10";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_state_1\ : LABEL IS "macrocell11";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_state_0\ : LABEL IS "macrocell12";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_state_2\ : LABEL IS "macrocell13";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_bitclk\ : LABEL IS "macrocell14";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell15";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_state_0\ : LABEL IS "macrocell16";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_load_fifo\ : LABEL IS "macrocell17";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_state_3\ : LABEL IS "macrocell18";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_state_2\ : LABEL IS "macrocell19";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_bitclk_enable\ : LABEL IS "macrocell20";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell21";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:pollcount_1\ : LABEL IS "macrocell22";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:pollcount_0\ : LABEL IS "macrocell23";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_status_3\ : LABEL IS "macrocell24";
-    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_last\ : LABEL IS "macrocell25";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:txn\ : LABEL IS "macrocell9";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_state_1\ : LABEL IS "macrocell10";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_state_0\ : LABEL IS "macrocell11";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_state_2\ : LABEL IS "macrocell12";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_bitclk\ : LABEL IS "macrocell13";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell14";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_state_0\ : LABEL IS "macrocell15";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_load_fifo\ : LABEL IS "macrocell16";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_state_3\ : LABEL IS "macrocell17";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_state_2\ : LABEL IS "macrocell18";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_bitclk_enable\ : LABEL IS "macrocell19";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell20";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:pollcount_1\ : LABEL IS "macrocell21";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:pollcount_0\ : LABEL IS "macrocell22";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_status_3\ : LABEL IS "macrocell23";
+    ATTRIBUTE lib_model OF \UART_Debug:BUART:rx_last\ : LABEL IS "macrocell24";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -453,17 +445,6 @@ ARCHITECTURE __DEFAULT__ OF \AY1920_II_HW_05_PROJ_2.3\ IS
     ATTRIBUTE udb_clk OF statusicell : COMPONENT IS "clock";
     ATTRIBUTE udb_clken OF statusicell : COMPONENT IS "clk_en";
     ATTRIBUTE udb_reset OF statusicell : COMPONENT IS "reset";
-    COMPONENT timercell
-        PORT (
-            clock : IN std_ulogic;
-            kill : IN std_ulogic;
-            enable : IN std_ulogic;
-            capture : IN std_ulogic;
-            timer_reset : IN std_ulogic;
-            tc : OUT std_ulogic;
-            cmp : OUT std_ulogic;
-            irq : OUT std_ulogic);
-    END COMPONENT;
 BEGIN
 
     ClockBlock:clockblockcell
@@ -483,10 +464,7 @@ BEGIN
             dsi_glb_div => open,
             dclk_glb_0 => \UART_Debug:Net_9\,
             dclk_0 => \UART_Debug:Net_9_local\,
-            dclk_glb_1 => Net_386,
-            dclk_1 => Net_386_local,
-            clk_bus_glb_ff => \ClockBlock.clk_bus_glb_ff__sig\,
-            dclk_glb_ff_1 => \ClockBlock.dclk_glb_ff_1__sig\);
+            clk_bus_glb_ff => \ClockBlock.clk_bus_glb_ff__sig\);
 
     Rx_1:logicalport
         GENERIC MAP(
@@ -946,14 +924,6 @@ BEGIN
             main_0 => \UART_Debug:BUART:rx_fifonotempty\,
             main_1 => \UART_Debug:BUART:rx_state_stop1_reg\);
 
-    __ONE__:macrocell
-        GENERIC MAP(
-            eqn_main => "1'b0",
-            regmode => 0,
-            clken_mode => 1)
-        PORT MAP(
-            q => __ONE__);
-
     \UART_Debug:BUART:sTX:TxShifter:u0\:datapathcell
         GENERIC MAP(
             a0_init => "00000000",
@@ -1144,27 +1114,6 @@ BEGIN
             scl_out => \I2C_Master:Net_643_0\,
             sda_out => \I2C_Master:sda_x_wire\,
             interrupt => \I2C_Master:Net_697\);
-
-    \Timer_ACC:TimerHW\:timercell
-        GENERIC MAP(
-            cy_registers => "")
-        PORT MAP(
-            clock => \ClockBlock.dclk_glb_ff_1__sig\,
-            kill => open,
-            enable => __ONE__,
-            capture => open,
-            timer_reset => open,
-            tc => \Timer_ACC:Net_51\,
-            cmp => \Timer_ACC:Net_261\,
-            irq => Net_396);
-
-    isr_READ:interrupt
-        GENERIC MAP(
-            int_type => "10",
-            is_nmi => 0)
-        PORT MAP(
-            interrupt => Net_396,
-            clock => ClockBlock_BUS_CLK);
 
     \UART_Debug:BUART:txn\:macrocell
         GENERIC MAP(
